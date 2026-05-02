@@ -56,6 +56,8 @@ app.get("/api/guests", (req, res) => {
   res.json(loadGuests());
 });
 
-app.listen(3000, () => {
-  console.log("Сервер запущен: http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Сервер запущен");
 });

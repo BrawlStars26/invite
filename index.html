@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Иван & Яна</title>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Snell Roundhand';
+      src: url('fonts/SnellRoundhand.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    .background-blur {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background: url('img/fonn.jfif') center center/cover no-repeat;
+      filter: blur(16px) brightness(0.8);
+      pointer-events: none;
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Snell Roundhand', cursive;
+      background: #8fa892;
+    }
+    .hero,
+    .section,
+    .love-story-block,
+    .love-story-text,
+    .love-story-img,
+    .meeting-block,
+    .additional-block,
+    .invite-text-block,
+    .timing-title {
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100vw; 
+      background: url('img/main1.jpg') center center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
+      z-index: 1;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .names {
+      color: #fff;
+      font-size: 6vw;
+      letter-spacing: 0.1em;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .date {
+      color: #fff;
+      font-size: 1.5vw;
+      letter-spacing: 0.5em;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 600px) {
+      .names {
+        font-size: 10vw;
+      }
+      .date {
+        font-size: 3vw;
+      }
+    }
+    .section {
+      background: #fff;
+      margin: 40px auto 0 auto;
+      padding: 32px 24px;
+      border-radius: 16px;
+      max-width: 600px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 16px;
+      color: #b89d5b;
+    }
+    .program {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.1em;
+    }
+    .program li {
+      margin: 8px 0;
+    }
+    .rsvp-form input, .rsvp-form select {
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 80%;
+      font-size: 1em;
+      font-family: inherit;
+    }
+    .rsvp-form button {
+      background: #b89d5b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 32px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background 0.2s;
+    }
+    .rsvp-form button:hover {
+      background: #a88c4a;
+    }
+    .love-story-block {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 60px auto 0 auto;
+      background: none;
+    }
+    .love-story-img img {
+      display: block;
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      background: #eee;
+    }
+    .love-story-text {
+      background: rgba(255,250,205,0.3);
+      color: #fff;
+      padding: 48px 48px 32px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 400px;
+      max-width: 500px;
+      position: relative;
+      font-weight: bold;
+    }
+    .love-story-title,
+    .love-story-desc {
+      font-family: inherit !important;
+      font-size: 2.8em;
+      font-weight: normal;
+      font-style: normal;
+      color: #fff;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .love-story-title {
+      margin-bottom: 32px;
+      line-height: 1.1;
+      text-align: left;
+    }
+    .love-story-desc {
+      font-size: 1.5em;
+      margin-bottom: 32px;
+      line-height: 1.5;
+      text-align: left;
+    }
+    .love-story-line {
+      width: 80px;
+      height: 3px;
+      background: #d6be8b;
+      border-radius: 2px;
+      margin-top: auto;
+      margin-left: 0;
+    }
+    @media (max-width: 1000px) {
+      .love-story-block {
+        flex-direction: column;
+        align-items: center;
+      }
+      .love-story-img img, .love-story-text {
+        width: 100%;
+        min-width: unset;
+        max-width: 100%;
+      }
+      .love-story-text {
+        padding: 32px 16px 24px 16px;
+      }
+    }
+    .invite-text-block {
+      margin: 60px auto 0 auto;
+      max-width: 1100px;
+      text-align: center;
+    }
+    .invite-text {
+      font-size: 2.3em;
+      margin-bottom: 32px;
+      line-height: 1.4;
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: bold;
+    }
+    .dresscode-text-last {
+      margin-bottom: 48px;
+    }
+    .meeting-block {
+      margin: 60px auto 0 auto;
+      text-align: center;
+      max-width: 900px;
+    }
+    .timing-title {
+      font-family: inherit;
+      font-size: 5.5em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 40px;
+    }
+    .meeting-title {
+      font-size: 2.8em;
+      margin-bottom: 32px;
+      margin-top: 0;
+    }
+    .meeting-photos {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .meeting-photos img {
+      width: 660px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #eee;
+      max-width: 100%;
+    }
+    .meeting-time {
+      font-size: 2.2em;
+      font-weight: bold;
+      font-style: italic;
+      margin-bottom: 18px;
+      margin-top: 0;
+    }
+    .meeting-address {
+      font-size: 2em;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 800px) {
+      .meeting-photos {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .meeting-photos img {
+        width: 100%;
+        max-width: 350px;
+        height: 200px;
+        margin: 0 auto;
+      }
+    }
+    .meeting-title,
+    .meeting-time,
+    .meeting-address {
+      font-style: italic;
+    }
+    .between-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      margin: 60px 0 60px 0;
+    }
+    .vertical-line {
+      width: 4px;
+      height: 80px;
+      background: #bdbdbd;
+      border-radius: 2px;
+      margin: 40px auto;
+    }
+    .additional-block {
+      background: rgba(255,250,205,0.3);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 80px 20px;
+      margin: 60px 0 0 0;
+      position: relative;
+    }
+    .additional-title {
+      font-family: 'Snell Roundhand', cursive !important;
+      font-size: 2.5em;
+      color: #fff;
+      margin-bottom: 16px;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+    }
+    .additional-line {
+      width: 160px;
+      height: 4px;
+      background: #f3e2b6;
+      margin: 24px auto;
+      border-radius: 2px;
+    }
+    .additional-text {
+      font-family: 'Times New Roman', Times, serif !important;
+      font-size: 1.2em;
+      letter-spacing: 0.18em;
+      margin: 0 auto 32px auto;
+      max-width: 900px;
+      color: #fff;
+      text-transform: none;
+    }
+    /* Стили для анкеты гостя */
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b89d5b;
+      border-radius: 8px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.1em;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .rsvp-form input:focus,
+    .rsvp-form select:focus,
+    .rsvp-form textarea:focus {
+      outline: none;
+      border-color: #8b734b;
+    }
+    .rsvp-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .rsvp-form button {
+      background: #b89d5b;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 40px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 20px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .rsvp-form button:hover {
+      background: #8b734b;
+    }
+    /* Стили для чекбоксов алкоголя */
+    .alcohol-preferences {
+      width: 100%;
+      margin: 10px 0;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: #b89d5b;
+    }
+    @media (max-width: 600px) {
+      .rsvp-form {
+        padding: 0 20px;
+      }
+    }
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .fade-scroll.visible {
+      opacity: 1;
+      transform: none;
+    }
+    @media (max-width: 600px) {
+      .names[style] {
+        font-size: 4vw !important;
+      }
+    }
+    .calendar-block {
+      background: rgba(255,250,205,0.3);
+      color: #fff;
+      max-width: 420px;
+      margin: 40px auto 60px auto;
+      border-radius: 16px;
+      padding: 36px 32px 32px 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+      text-align: center;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+    .calendar-month {
+      font-family: 'Snell Roundhand', cursive;
+      font-size: 4em;
+      margin-bottom: 18px;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+    }
+    .calendar-table {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+    .calendar-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .calendar-header div {
+      font-size: 1.1em;
+      font-family: 'Forum', serif;
+      opacity: 0.8;
+      width: 36px;
+      margin-bottom: 6px;
+    }
+    .calendar-row div {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25em;
+      font-family: 'Forum', serif;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .calendar-active {
+      border: 2px solid #fff;
+      color: #fff;
+      font-weight: bold;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 8px 2px #fff2;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+  <audio id="bg-music" src="music/music.mp3" loop></audio>
+  <button id="play-music-btn" style="position:fixed;top:20px;left:20px;z-index:1000;opacity:0.6;padding:0;width:54px;height:54px;border-radius:50%;border:none;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.08);cursor:pointer;transition:opacity 0.2s;">
+    <img src="img/knopp.png" alt="Play" style="width:32px;height:32px;display:block;">
+  </button>
+  <script>
+    var audio = document.getElementById('bg-music');
+    var btn = document.getElementById('play-music-btn');
+    audio.volume = 0.5;
+    function playMusic() {
+      audio.play();
+      btn.style.display = 'none';
+    }
+    btn.addEventListener('click', playMusic);
+    btn.addEventListener('mouseover', function(){btn.style.opacity = '1';});
+    btn.addEventListener('mouseout', function(){btn.style.opacity = '0.6';});
+    document.body.addEventListener('click', function handler(e) {
+      if(e.target !== btn) playMusic();
+      document.body.removeEventListener('click', handler);
+    });
+    // Fade-in on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeEls = document.querySelectorAll('.fade-scroll');
+      const observer = new window.IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      fadeEls.forEach(el => observer.observe(el));
+    });
+  </script>
+  <div class="hero fade-scroll">
+    <div class="overlay fade-scroll"></div>
+    <div class="content fade-scroll">
+      <div class="names fade-scroll">ИВАН & ЯНА</div>
+    </div>
+  </div>
+  <!-- Приглашение текст -->
+  <div class="invite-text-block fade-scroll">
+    <div class="invite-text fade-scroll">
+        Один из дней этого лета станет самым важным в нашей жизни, и мы хотим провести его вместе с вами!<br>
+    </div>
+    <div class="invite-text fade-scroll">
+        С огромной радостью и большой любовью приглашаем вас на нашу свадьбу.<br>    
+    </div>
+  </div>
+  <!-- Календарь -->
+  <div class="calendar-block fade-scroll">
+    <div class="calendar-month">Август</div>
+    <div class="calendar-table">
+      <div class="calendar-row calendar-header">
+        <div>ПН</div><div>ВТ</div><div>СР</div><div>ЧТ</div><div>ПТ</div><div>СБ</div><div>ВС</div>
+      </div>
+      <div class="calendar-row"><div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div></div>
+      <div class="calendar-row"><div>3</div><div>4</div><div>5</div><div>6</div><div class="calendar-active">7</div><div>8</div><div>9</div></div>
+      <div class="calendar-row"><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div></div>
+      <div class="calendar-row"><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div></div>
+      <div class="calendar-row"><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div></div>
+      <div class="calendar-row"><div>31</div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+  </div>
+  <!-- Место встречи -->
+  <div class="meeting-block fade-scroll">
+    <div class="timing-title fade-scroll">Тайминг</div>
+    <div class="meeting-title fade-scroll">Сбор гостей</div>
+    <div class="meeting-photos fade-scroll">
+      <img src="img/mesto.png" alt="Место встречи" class="fade-scroll">
+    </div>
+    <div class="meeting-time fade-scroll">13:00</div>
+    <div class="meeting-address fade-scroll">Ул. Советской Армии, 4к1</div>
+  </div>
+  <!-- Следующий блок по аналогии -->
+  <div class="meeting-block fade-scroll">
+    <div class="vertical-line fade-scroll"></div>
+    <div class="meeting-title fade-scroll">Регистрация брака</div>
+    <div class="meeting-photos fade-scroll">
+      <img src="img/koll.png" alt="Регистрация" class="fade-scroll">
+    </div>
+    <div class="meeting-time fade-scroll">15:00</div>
+    <div class="meeting-address fade-scroll">п.Варские, ул.Новая, 11</div>
+  </div>
+  <!-- Следующий блок по аналогии -->
+  <div class="meeting-block fade-scroll">
+    <div class="vertical-line fade-scroll"></div>
+    <div class="meeting-title fade-scroll">Начало банкета</div>
+    <div class="meeting-photos fade-scroll">
+      <img src="img/zal.png" alt="Банкет" class="fade-scroll">
+    </div>
+    <div class="meeting-time fade-scroll">16:00</div>
+    <div class="meeting-address fade-scroll">Ресторан "Усадьба", п.Варские, ул.Новая, 11</div>
+  </div>
+  <div class="timing-title fade-scroll">Дресс-код</div>
+  <div class="meeting-block fade-scroll">
+    <div class="invite-text fade-scroll">
+        Так как свадьба будет проходить за городом, будем рады увидеть вас в расслабленных костюмах и летящих платьях.<br>    
+    </div>
+    <div class="invite-text fade-scroll">
+        Но , будем благодарны, если в этот день белый останется привилегией невесты.<br>    
+    </div>
+    <div class="invite-text dresscode-text-last fade-scroll">
+        Если вы хотите поддержать стилистику нашей свадьбы, вот наша цветовая палитра для вашего вдохновения.<br>
+    </div>
+    <div class="meeting-photos fade-scroll">
+      <img src="img/dres.png" alt="Банкет" class="fade-scroll">
+    </div>
+  </div>
+  <!-- Дополнительно -->
+  <div class="additional-block fade-scroll">
+    <div class="additional-title fade-scroll">Дополнительно</div>
+    <div class="additional-line fade-scroll"></div>
+    <div class="additional-text fade-scroll">
+      Если вы хотите подарить нам ценный и нужный подарок, просим уменьшить его габариты до размера почтового конверта.
+    </div>
+    <div class="additional-line fade-scroll"></div>
+    <div class="additional-text fade-scroll">
+      Пожалуйста, подготовьте короткий тост. Мы ценим ваш вклад и хотим, чтобы каждый гость имел возможность поделиться своими мыслями.
+    </div>
+    <div class="additional-line fade-scroll"></div>
+    <div class="additional-text fade-scroll">
+      Будем благодарны, если вы воздержитесь от криков «Горько», пусть нам всю жизнь будет сладко.
+    </div>
+    <div class="additional-line fade-scroll"></div>
+    <div class="additional-text fade-scroll">
+      Просим вас в день нашей свадьбы не использовать мобильные телефоны, у нас лучшая фото и видео команда, они все заснимут.
+    </div>
+  </div>
+  <!-- Анкета гостя -->
+  <div class="section fade-scroll" style="margin-bottom: 60px;">
+    <h2 class="fade-scroll">Анкета гостя</h2>
+    <form class="rsvp-form fade-scroll" id="guestForm">
+      <input type="text" name="name" placeholder="Ваше имя и фамилия" required class="fade-scroll">
+      <select name="attendance" required class="fade-scroll">
+        <option value="">Придете ли вы на свадьбу?</option>
+        <option value="yes">Да, с удовольствием!</option>
+        <option value="no">К сожалению, не смогу</option>
+      </select>
+
+      <div class="alcohol-preferences fade-scroll">
+        <p style="margin-bottom: 10px; font-family: 'Times New Roman', Times, serif;" class="fade-scroll">Ваши предпочтения по напиткам (можно выбрать несколько):</p>
+        <div class="checkbox-group fade-scroll">
+          <label class="fade-scroll">
+            <input type="checkbox" name="alcohol" value="red_wine" class="fade-scroll"> Вино
+                    </label>
+          <label class="fade-scroll">
+            <input type="checkbox" name="alcohol" value="cognac" class="fade-scroll"> Коньяк
+          </label>
+          <label class="fade-scroll">
+            <input type="checkbox" name="alcohol" value="vodka" class="fade-scroll"> Водка
+          </label>
+          <label class="fade-scroll">
+            <input type="checkbox" name="alcohol" value="whiskey" class="fade-scroll"> Сок (Яблоко или мультифрукт)
+          </label>
+          <label class="fade-scroll">
+            <input type="checkbox" name="alcohol" value="none" class="fade-scroll"> Газировка (Указать)
+          </label>
+        </div>
+      </div>
+      <textarea name="comments" placeholder="Дополнительные комментарии или пожелания" rows="3" class="fade-scroll"></textarea>
+      <div class="music-preference fade-scroll">
+        <p style="margin-bottom: 10px; font-family: 'Times New Roman', Times, serif;" class="fade-scroll">Ваш любимый трек для свадебного плейлиста:</p>
+        <input type="text" name="favorite_track" placeholder="Исполнитель - Название песни" style="width: 100%;" class="fade-scroll">
+      </div>
+      <button type="submit" class="fade-scroll">Отправить</button>
+    </form>
+  </div>
+  <!-- Нижний блок, как в начале сайта -->
+  <div class="hero fade-scroll" style="margin-top: 60px;">
+    <div class="overlay"></div>
+    <div class="content fade-scroll">
+      <div class="names fade-scroll" style="font-size:2vw;">Любовь подобна морю: иногда тихое и умиротворяющее, иногда бурное и непредсказуемое, но всегда полное красоты и открытий…</div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("guestForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+    
+      const form = e.target;
+    
+      const formData = new FormData(form);
+    
+      // собираем чекбоксы отдельно
+      const alcohol = formData.getAll("alcohol");
+    
+      const data = {
+        name: formData.get("name"),
+        attendance: formData.get("attendance"),
+        alcohol: alcohol,
+        comments: formData.get("comments"),
+        favorite_track: formData.get("favorite_track")
+      };
+    
+      try {
+        const res = await fetch("http://localhost:3000/api/guest", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+    
+        const result = await res.json();
+    
+        alert(result.message);
+        form.reset();
+      } catch (err) {
+        alert("Ошибка отправки 😢");
+        console.error(err);
+      }
+    });
+    </script>
+</body>
+</html> 

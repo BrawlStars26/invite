@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1777728889380,
+    "name": "Иван",
+    "attendance": "yes",
+    "alcohol": [
+      "red_wine"
+    ],
+    "comments": "",
+    "favorite_track": "",
+    "createdAt": "2026-05-02T13:34:49.380Z"
+  },
+  {
+    "id": 1777728926580,
+    "name": "Иван",
+    "attendance": "yes",
+    "alcohol": [
+      "vodka",
+      "whiskey"
+    ],
+    "comments": "Аллергия на рыбу",
+    "favorite_track": "Мияги",
+    "createdAt": "2026-05-02T13:35:26.580Z"
+  },
+  {
+    "id": 1777728967669,
+    "name": "Иван",
+    "attendance": "yes",
+    "alcohol": [
+      "none"
+    ],
+    "comments": "",
+    "favorite_track": "",
+    "createdAt": "2026-05-02T13:36:07.669Z"
+  }
+]
